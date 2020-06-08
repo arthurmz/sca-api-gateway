@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: rewritepath_route
+        uri: http://localhost:8082
+        predicates:
+        - Path=/sca-cadastro-ativos/**
+        filters:
+        - RewritePath=/sca-cadastro-ativos/(?<segment>.*), /$\{segment}
